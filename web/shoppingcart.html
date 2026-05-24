@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Nora's Flora - Winkelmandje</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <div id="divLogo">
+        <img
+          id="imgLogo"
+          src="images/Nora'sFloraLogo.png"
+          alt="Nora'sFloraLogo"
+        />
+      </div>
+      <div id="divNavigatie">
+        <a href="index.html">Home</a>
+        <a href="assortiment.html">Assortiment</a>
+        <a href="contact.html">Contact</a>
+        <a href="shoppingcart.html">Winkelmandje</a>
+      </div>
+    </header>
+
+    <main>
+      <div id="cartContainer">
+        <h1>winkelmandje</h1>
+        <div id="cartItems"></div>
+        <div class="cart-actions">
+          <a href="assortiment.html">koop meer plantjes</a>
+          <button onclick="clearCart()">Mandje leegmaken</button>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footerContainer">
+      <div id="footerLinks">
+        <p>
+          Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: contact@noraflora.com
+        </p>
+        <p>Telefoon&nbsp;&nbsp;: 06 12345678</p>
+        <p>
+          Adres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Zwolle, pannenkoekendijk
+          420 B
+        </p>
+      </div>
+      <div id="footerRechts">
+        <h2>Openingstijden</h2>
+        <p>Ma - Vr : 12:00 - 17:00</p>
+        <p>Zaterdag : 10:00 - 17:00</p>
+      </div>
+    </footer>
+
+    <script src="producten.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
