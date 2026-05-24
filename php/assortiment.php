@@ -11,7 +11,11 @@
 
 
 <body>
-  <div></div>
+  <div>
+<?php
+echo "Hello, world!";
+?>
+</div>
   <header>
     <div id="divLogo">
       <img id="imgLogo" src="images/Nora'sFloraLogo.png" alt="Nora'sFloraLogo" />
@@ -25,7 +29,6 @@
   </header>
   <main>
     <div id="assortimentContainer">
-
 
       <div id="producten">
 
