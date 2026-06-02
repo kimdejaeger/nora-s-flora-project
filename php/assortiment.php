@@ -14,6 +14,7 @@
   <div>
 <?php
 echo "Hello, world!";
+echo "test";
 ?>
 </div>
   <header>
@@ -22,7 +23,7 @@ echo "Hello, world!";
     </div>
     <div id="divNavigatie">
       <a href="index.html">Home</a>
-      <a href="assortiment.html">Assortiment</a>
+      <a href="assortiment.php">Assortiment</a>
       <a href="contact.html">Contact</a>
       <a href="shoppingcart.html">Winkelmandje</a>
     </div>
