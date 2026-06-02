@@ -12,7 +12,7 @@
 <?php
 require_once './partials/dbconnection.php';
 
-$query = "SELECT id, naam, verkoopprijs_eur as prijs, overview_image as afbeelding FROM planten WHERE voorraad > 0 ORDER BY naam";
+$query = "SELECT id, naam, verkoopprijs_eur as prijs, standplaats, overview_image as afbeelding FROM planten WHERE voorraad > 0 ORDER BY naam LIMIT 50";
 $result = $conn->query($query);
 ?>
 
@@ -40,7 +40,7 @@ $result = $conn->query($query);
             $prijs = number_format($product['prijs'], 2, ',', '');
             echo '<div class="product">
             <img src="' . $afbeelding . '" alt="' . $product['naam'] . '">
-            <p>' . $product['naam'] . '<br />€' . $prijs . '</p>
+            <p>' . $product['naam'] . '<br /><small>' . $product['standplaats'] . '</small><br />€' . $prijs . '</p>
             <button onclick="voegToe(' . $product['id'] . ', \'' . addslashes($product['naam']) . '\', ' . $product['prijs'] . ')">🛒</button></div>';
           }
         }
