@@ -12,8 +12,17 @@
 <?php
 require_once './partials/dbconnection.php';
 
-$query = "SELECT id, naam, verkoopprijs_eur as prijs, standplaats, overview_image as afbeelding FROM planten WHERE voorraad > 0 ORDER BY naam LIMIT 50";
+$query = "SELECT id, naam, verkoopprijs_eur as prijs, standplaats, overview_image as afbeelding FROM planten WHERE voorraad > 0";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['standplaats'])) {
+    $standplaats = $conn->real_escape_string($_POST['standplaats']);
+    $query .= " AND standplaats = '" . $standplaats . "'";
+}
+
+$query .= " ORDER BY naam LIMIT 50";
 $result = $conn->query($query);
+
+$standplaats_result = $conn->query("SELECT DISTINCT standplaats FROM planten WHERE voorraad > 0 ORDER BY standplaats");
 ?>
 
 <body>
@@ -30,6 +39,37 @@ $result = $conn->query($query);
     </div>
   </header>
   <main>
+
+<form method="POST" class="filter-form">
+    <label for="standplaats">Standplaats</label>
+
+    <select name="standplaats" id="standplaats">
+        <option value="">Alles tonen</option>
+
+        <?php
+        if ($standplaats_result && $standplaats_result->num_rows > 0) {
+            while ($row = $standplaats_result->fetch_assoc()) {
+                $selected = ($_POST['standplaats'] ?? '') === $row['standplaats']
+                    ? 'selected'
+                    : '';
+
+                echo '<option value="' .
+                    htmlspecialchars($row['standplaats']) .
+                    '" ' .
+                    $selected .
+                    '>' .
+                    htmlspecialchars($row['standplaats']) .
+                    '</option>';
+            }
+        }
+        ?>
+    </select>
+
+    <button type="submit">
+        Filteren
+    </button>
+</form>
+
     <div id="assortimentContainer">
 
       <div id="producten">
@@ -47,6 +87,7 @@ $result = $conn->query($query);
         ?>
       </div>
   </main>
+
   <footer id="footerContainer">
     <div id="footerLinks">
       <p>
