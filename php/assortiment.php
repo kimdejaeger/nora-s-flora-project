@@ -9,14 +9,15 @@
 
 </head>
 
+<?php
+require_once './partials/dbconnection.php';
+
+$query = "SELECT id, naam, verkoopprijs_eur as prijs, overview_image as afbeelding FROM planten WHERE voorraad > 0 ORDER BY naam";
+$result = $conn->query($query);
+?>
 
 <body>
-  <div>
-<?php
-echo "Hello, world!";
-echo "test";
-?>
-</div>
+
   <header>
     <div id="divLogo">
       <img id="imgLogo" src="images/Nora'sFloraLogo.png" alt="Nora'sFloraLogo" />
@@ -32,7 +33,18 @@ echo "test";
     <div id="assortimentContainer">
 
       <div id="producten">
-
+        <?php
+        if ($result && $result->num_rows > 0) {
+          while ($product = $result->fetch_assoc()) {
+            $afbeelding = 'images_planten/' . $product['afbeelding'];
+            $prijs = number_format($product['prijs'], 2, ',', '');
+            echo '<div class="product">
+            <img src="' . $afbeelding . '" alt="' . $product['naam'] . '">
+            <p>' . $product['naam'] . '<br />€' . $prijs . '</p>
+            <button onclick="voegToe(' . $product['id'] . ', \'' . addslashes($product['naam']) . '\', ' . $product['prijs'] . ')">🛒</button></div>';
+          }
+        }
+        ?>
       </div>
   </main>
   <footer id="footerContainer">
@@ -53,7 +65,6 @@ echo "test";
     </div>
   </footer>
 </body>
-<script src="producten.js"></script>
 <script src="script.js"></script>
 
 </html>

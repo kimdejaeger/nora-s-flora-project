@@ -1,73 +1,20 @@
-const productGrid = document.getElementById("producten");
-
-function toonPlanten() {
-  if (!productGrid) return;
-
-  productGrid.innerHTML = "";
-
-  planten.forEach((plant) => {
-    const productDiv = document.createElement("div");
-    productDiv.classList.add("product");
-
-    if (plant.groot) {
-      productDiv.classList.add("product-large");
-    }
-
-    productDiv.innerHTML = `
-      <img src="${plant.afbeelding}" alt="Foto van ${plant.naam}" loading="lazy">
-      <p>${plant.naam}<br />€${plant.prijs.toFixed(2)}</p>
-      <button class="cart-button" onclick="voegToe(${plant.id})">
-        🛒 Bestellen
-      </button>
-    `;
-
-    productGrid.appendChild(productDiv);
-  });
-}
-
-if (productGrid) {
-  toonPlanten();
-}
-
-function voegToe(id) {
-  console.log("Plant met ID " + id + " is toegevoegd!");
-  addToCart(id);
-}
-
-function addToCart(id) {
+function voegToe(id, naam, prijs) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  const product = planten.find((p) => p.id === id);
-
-  if (product) {
-    cart.push(product);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-  }
-}
-
-function updateCartCount() {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const cartCountElement = document.getElementById("cartCount");
-  if (cartCountElement) {
-    cartCountElement.innerText = `(${cart.length})`;
-  }
+  cart.push({id, naam, prijs});
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(naam + ' toegevoegd aan winkelmandje!');
 }
 
 function initializeCart() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  let total = 0;
-
-  cart.forEach((item) => {
-    total += item.prijs;
-  });
-
-  console.log("Cart total: €" + total.toFixed(2));
   updateCartCount();
 }
 
-initializeCart();
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartCount = document.getElementById("cartCount");
+  if (cartCount) cartCount.textContent = cart.length;
+}
 
 function removeFromCart(index) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -80,35 +27,24 @@ function displayCart() {
   const cartContainer = document.getElementById("cartItems");
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+  if (!cartContainer) return;
+  
   if (cart.length === 0) {
-    cartContainer.innerHTML =
-      '<div class="empty-cart">Je winkelmandje is leeg. <br><a href="assortiment.html">Ga naar assortiment</a></div>';
+    cartContainer.innerHTML = 'Je winkelmandje is leeg.';
     return;
   }
 
-  let cartHTML = "<table><tr><th>Product</th><th>Prijs</th></tr>";
+  let html = '<table><tr><th>Product</th><th>Prijs</th><th></th></tr>';
   let total = 0;
 
-  cart.forEach((item, index) => {
-    cartHTML += `
-             <tr>
-                <td>${item.naam}</td>
-                <td>€${item.prijs.toFixed(2)}</td>
-                     
-            </tr>
-        `;
+  cart.forEach((item, i) => {
     total += item.prijs;
+    html += '<tr><td>' + item.naam + '</td><td>€' + item.prijs.toFixed(2) + '</td><td><button onclick="removeFromCart(' + i + ')">Verwijderen</button></td></tr>';
   });
 
-  cartHTML += `</table><div class="cart-total">Totaal: €${total.toFixed(2)}</div>`;
-  cartContainer.innerHTML = cartHTML;
+  html += '</table><p>Totaal: €' + total.toFixed(2) + '</p>';
+  cartContainer.innerHTML = html;
 }
 
-function clearCart() {
-  if (confirm("Weet je zeker dat je je winkelmandje wilt leegmaken?")) {
-    localStorage.removeItem("cart");
-    displayCart();
-  }
-}
-
+initializeCart();
 displayCart();

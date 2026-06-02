@@ -1,66 +1,24 @@
-const planten = [
-  {
-    id: 1,
-    naam: "Rode tulpen",
-    prijs: 3.5,
-    categorie: "Tulpen",
-    afbeelding: "images/pexels-valeriya-1961778.webp",
-    beschrijving: "Prachtige tulpen.",
-  },
-  {
-    id: 2,
-    naam: "Zonnebloemen",
-    prijs: 2.0,
-    categorie: "Zonnebloemen",
-    afbeelding: "images/pexels-pixabay-54267.webp",
-    beschrijving: "Vrolijke zonnebloemen die je dag opfleuren.",
-  },
-  {
-    id: 3,
-    naam: "Roze bouquet",
-    prijs: 18.0,
-    categorie: "Bouquet",
-    afbeelding: "images/pexels-secret-garden-333350-931176.webp",
-    beschrijving: "Prachtige roze bloemen.",
-  },
-  {
-    id: 4,
-    naam: "Lente bouquet",
-    prijs: 20.5,
-    categorie: "Importbloemen",
-    afbeelding: "images/pexels-valeriya-1484657.webp",
-    beschrijving: "Prachtige lente bloemen.",
-  },
-  {
-    id: 5,
-    naam: "Paarse Allium Bloemen",
-    prijs: 3.0,
-    categorie: "Allium",
-    afbeelding: "images/pexels-mikebirdy-109828.webp",
-    beschrijving: "Elegante paarse allium, gratis bij bouquet.",
-  },
-  {
-    id: 6,
-    naam: "Vetbloemen Mix",
-    prijs: 6.0,
-    categorie: "Vetplanten",
-    afbeelding: "images/pexels-maureen-piecesphotography-1207978.webp",
-    beschrijving: "Mix van verschillende vetbloemen, 3+1 gratis.",
-  },
-  {
-    id: 7,
-    naam: "Lente bloemen",
-    prijs: 8.5,
-    categorie: "lentebloemen",
-    afbeelding: "images/pexels-jos-van-ouwerkerk-377363-1075960.webp",
-    beschrijving: "Prachtige lente bloemen.",
-  },
-  {
-    id: 8,
-    naam: "Dahlias",
-    prijs: 4.0,
-    categorie: "Dahlias",
-    afbeelding: "images/pexels-scottwebb-403571.webp",
-    beschrijving: "Kleurrijke dahlias, perfect voor elk seizoen.",
-  },
-];
+let planten = [];
+
+// Laad producten van de database via API
+async function loadPlanten() {
+  try {
+    const response = await fetch('api/get-products.php');
+    if (!response.ok) {
+      throw new Error('Fout bij laden van producten');
+    }
+    planten = await response.json();
+    console.log('Producten geladen van database:', planten);
+    
+    // Als de pagina al geladen is, toon de producten
+    const productGrid = document.getElementById("producten");
+    if (productGrid && typeof toonPlanten === 'function') {
+      toonPlanten();
+    }
+  } catch (error) {
+    console.error('Fout bij laden producten:', error);
+  }
+}
+
+// Laad producten wanneer dit script geladen wordt
+loadPlanten();
