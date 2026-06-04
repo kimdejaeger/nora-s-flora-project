@@ -13,10 +13,19 @@
 require_once './partials/dbconnection.php';
 
 $query = "SELECT id, naam, verkoopprijs_eur as prijs, standplaats, overview_image as afbeelding FROM planten WHERE voorraad > 0";
+$searchTerm = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['standplaats'])) {
-    $standplaats = $conn->real_escape_string($_POST['standplaats']);
-    $query .= " AND standplaats = '" . $standplaats . "'";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $searchTerm = trim($_POST['search'] ?? '');
+    if ($searchTerm !== '') {
+        $escapedSearch = $conn->real_escape_string($searchTerm);
+        $query .= " AND naam LIKE '%" . $escapedSearch . "%'";
+    }
+
+    if (!empty($_POST['standplaats'])) {
+        $standplaats = $conn->real_escape_string($_POST['standplaats']);
+        $query .= " AND standplaats = '" . $standplaats . "'";
+    }
 }
 
 $query .= " ORDER BY naam LIMIT 50";
@@ -41,8 +50,11 @@ $standplaats_result = $conn->query("SELECT DISTINCT standplaats FROM planten WHE
   <main>
 
 <form method="POST" class="filter-form">
-    <label for="standplaats">Standplaats</label>
+    <label for="zoeken">Zoeken op plantnaam</label>
+    <input type="text" id="zoeken" name="search" 
+    placeholder="Vul een plantnaam in" value="<?php echo htmlspecialchars($searchTerm); ?>" />
 
+    <label for="standplaats">Standplaats</label>
     <select name="standplaats" id="standplaats">
         <option value="">Alles tonen</option>
 
