@@ -17,7 +17,7 @@ $types = "";
 
 if ($searchTerm !== '') {
   $conditions[] = "naam LIKE ?";
-  $params[] = "%" . $searchTerm . "%";
+  $params[] = "%" . $searchTerm . "";
   $types .= "s";
 }
 
