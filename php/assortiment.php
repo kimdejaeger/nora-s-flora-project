@@ -13,13 +13,32 @@
 require_once './partials/dbconnection.php';
 
 $query = "SELECT id, naam, verkoopprijs_eur as prijs, standplaats, overview_image as afbeelding FROM planten WHERE voorraad > 0";
+$searchTerm = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['standplaats'])) {
-    $standplaats = $conn->real_escape_string($_POST['standplaats']);
-    $query .= " AND standplaats = '" . $standplaats . "'";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $searchTerm = trim($_POST['search'] ?? '');
+    if ($searchTerm !== '') {
+        $escapedSearch = $conn->real_escape_string($searchTerm);
+        $query .= " AND naam LIKE '%" . $escapedSearch . "%'";
+    }
+
+    if (!empty($_POST['standplaats'])) {
+        $standplaats = $conn->real_escape_string($_POST['standplaats']);
+        $query .= " AND standplaats = '" . $standplaats . "'";
+    }
 }
 
-$query .= " ORDER BY naam LIMIT 50";
+if (!empty($_POST['prijs'])) {
+    if ($_POST['prijs'] === 'asc') {
+        $query .= " ORDER BY verkoopprijs_eur ASC";
+    } elseif ($_POST['prijs'] === 'desc') {
+        $query .= " ORDER BY verkoopprijs_eur DESC";
+    }
+} else {
+    $query .= " ORDER BY naam";
+}
+
+$query .= " LIMIT 50";
 $result = $conn->query($query);
 
 $standplaats_result = $conn->query("SELECT DISTINCT standplaats FROM planten WHERE voorraad > 0 ORDER BY standplaats");
@@ -41,28 +60,45 @@ $standplaats_result = $conn->query("SELECT DISTINCT standplaats FROM planten WHE
   <main>
 
 <form method="POST" class="filter-form">
-    <label for="standplaats">Standplaats</label>
+    <label for="zoeken">Zoeken op plantnaam</label>
+    <input type="text" id="zoeken" name="search" 
+    placeholder="Vul een plantnaam in" value="<?php echo htmlspecialchars($searchTerm); ?>" />
 
+    <label for="standplaats">Standplaats</label>
     <select name="standplaats" id="standplaats">
         <option value="">Alles tonen</option>
-
+        
         <?php
         if ($standplaats_result && $standplaats_result->num_rows > 0) {
-            while ($row = $standplaats_result->fetch_assoc()) {
-                $selected = ($_POST['standplaats'] ?? '') === $row['standplaats']
-                    ? 'selected'
-                    : '';
-
-                echo '<option value="' .
-                    htmlspecialchars($row['standplaats']) .
-                    '" ' .
-                    $selected .
-                    '>' .
-                    htmlspecialchars($row['standplaats']) .
-                    '</option>';
+          while ($row = $standplaats_result->fetch_assoc()) {
+            $selected = ($_POST['standplaats'] ?? '') === $row['standplaats']
+            ? 'selected'
+            : '';
+            
+            echo '<option value="' .
+            htmlspecialchars($row['standplaats']) .
+            '" ' .
+            $selected .
+            '>' .
+            htmlspecialchars($row['standplaats']) .
+            '</option>';
             }
-        }
-        ?>
+            }
+            ?>
+    </select>
+    <label for="prijs">Prijs</label>
+    <select name="prijs" id="prijs">
+      <option value="">Alles tonen</option>
+
+      <option value="asc" 
+        <?php echo (($_POST['prijs'] ?? '') === 'asc') ? 'selected' : ''; ?>>
+         oplopend
+      </option>
+
+      <option value="desc"
+        <?php echo (($_POST['prijs'] ?? '') === 'desc') ? 'selected' : ''; ?>>
+        Aflopend
+      </option>
     </select>
 
     <button type="submit">
