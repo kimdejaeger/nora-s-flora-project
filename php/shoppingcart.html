@@ -1,61 +1,166 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Nora's Flora - Winkelmandje</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Jouw winkelmandje bij Nora's Flora. Bekijk en beheer je producten en reken af." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    <title>Winkelmandje – Nora's Flora</title>
   </head>
 
   <body>
+
+    <!-- ── HEADER ── -->
     <header>
-      <div id="divLogo">
-        <img
-          id="imgLogo"
-          src="images/Nora'sFloraLogo.png"
-          alt="Nora'sFloraLogo"
-        />
-      </div>
-      <div id="divNavigatie">
+      <a href="index.html" id="divLogo" aria-label="Nora's Flora – naar de homepage"></a>
+      <nav id="divNavigatie" aria-label="Hoofdnavigatie">
         <a href="index.html">Home</a>
         <a href="assortiment.php">Assortiment</a>
         <a href="contact.html">Contact</a>
-        <a href="shoppingcart.html">Winkelmandje</a>
-      </div>
+        <a href="shoppingcart.html" class="nav-cart" aria-current="page">Winkelmandje</a>
+        <span id="cartCount" aria-live="polite"></span>
+      </nav>
     </header>
 
     <main>
-      <div id="cartContainer">
-        <h1>winkelmandje</h1>
-        <div id="cartItems"></div>
-        <div class="cart-actions">
-          <a href="assortiment.html">koop meer plantjes</a>
-          <button onclick="clearCart()">Mandje leegmaken</button>
+
+      <!-- ── CART HERO ── -->
+      <div class="cart-hero">
+        <div class="cart-hero-inner">
+          <h1>Winkelmandje</h1>
+          <p>Controleer je producten en ga verder naar afrekenen.</p>
         </div>
       </div>
+
+      <!-- ── CART CONTENT ── -->
+      <div id="cartContainer">
+
+        <!-- Two-column layout -->
+        <div id="cartLayout">
+
+          <!-- Left: items -->
+          <div id="cartItemsPanel">
+            <!-- Filled by script.js renderCartPage() -->
+          </div>
+
+          <!-- Right: summary -->
+          <aside id="cartSummary" aria-label="Besteloverzicht">
+            <h2>Besteloverzicht</h2>
+
+            <div class="summary-row">
+              <span>Subtotaal</span>
+              <span id="summarySubtotal">€0,00</span>
+            </div>
+            <div class="summary-row">
+              <span>Verzendkosten</span>
+              <span id="summaryShipping">€4,95</span>
+            </div>
+
+            <!-- Promo code -->
+            <div class="promo-row">
+              <input
+                type="text"
+                id="promoInput"
+                placeholder="Kortingscode"
+                aria-label="Kortingscode invoeren"
+              />
+              <button type="button" onclick="applyPromo()">Toepassen</button>
+            </div>
+            <span id="promoFeedback" role="alert"></span>
+
+            <hr class="summary-divider" />
+
+            <div class="summary-total">
+              <span class="label">Totaal</span>
+              <span class="amount" id="summaryTotal">€0,00</span>
+            </div>
+
+            <button id="checkoutBtn" type="button" onclick="handleCheckout()">
+              Afrekenen →
+            </button>
+
+            <p class="summary-security">🔒 Veilig betalen</p>
+
+            <div class="summary-payment-icons">
+              <span class="payment-icon">iDEAL</span>
+              <span class="payment-icon">Visa</span>
+              <span class="payment-icon">Mastercard</span>
+              <span class="payment-icon">PayPal</span>
+            </div>
+
+            <a href="assortiment.php" class="cart-continue">← Verder winkelen</a>
+          </aside>
+        </div>
+
+        <!-- Success state -->
+        <div id="checkoutSuccess" role="alert">
+          <div class="success-icon">🌸</div>
+          <h2>Bestelling geplaatst!</h2>
+          <p>Bedankt voor je bestelling bij Nora's Flora.<br />Je ontvangt een bevestiging per e-mail.</p>
+          <a href="index.html">Terug naar home</a>
+        </div>
+
+      </div>
+
     </main>
 
-    <footer id="footerContainer">
-      <div id="footerLinks">
-        <p>
-          Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: contact@noraflora.com
-        </p>
-        <p>Telefoon&nbsp;&nbsp;: 06 12345678</p>
-        <p>
-          Adres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Zwolle, pannenkoekendijk
-          420 B
-        </p>
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div id="footerContainer">
+        <div class="footer-brand">
+          <p>Verse bloemen met liefde samengesteld in Zwolle. Elke dag opnieuw.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Pinterest">📌</a>
+          </div>
+        </div>
+        <div id="footerLinks">
+          <span class="footer-col-title">Contact</span>
+          <div class="footer-contact-grid">
+            <span class="footer-label">Email</span>
+            <span class="footer-value">contact@noraflora.com</span>
+            <span class="footer-label">Tel</span>
+            <span class="footer-value">06 12345678</span>
+            <span class="footer-label">Adres</span>
+            <span class="footer-value">Pannenkoekendijk 420 B, Zwolle</span>
+          </div>
+        </div>
+        <div id="footerRechts">
+          <span class="footer-col-title">Openingstijden</span>
+          <p>Maandag – Vrijdag &nbsp;: 12:00 – 17:00</p>
+          <p>Zaterdag &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 10:00 – 17:00</p>
+          <p>Zondag &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Gesloten</p>
+        </div>
       </div>
-      <div id="footerRechts">
-        <h2>Openingstijden</h2>
-        <p>Ma - Vr : 12:00 - 17:00</p>
-        <p>Zaterdag : 10:00 - 17:00</p>
+      <div class="footer-bottom">
+        <span>© 2025 Nora's Flora — Alle rechten voorbehouden</span>
+        <nav class="footer-legal-links" aria-label="Juridische links">
+          <a href="#">Privacybeleid</a>
+          <a href="#">Algemene voorwaarden</a>
+          <a href="#">Retourbeleid</a>
+        </nav>
       </div>
     </footer>
 
-    <script src="producten.js"></script>
     <script src="script.js"></script>
+    <script>
+      function applyPromo() {
+        const code = document.getElementById('promoInput').value.trim().toUpperCase();
+        const fb = document.getElementById('promoFeedback');
+        if (code === 'FLORA10') {
+          fb.textContent = '✓ Kortingscode toegepast: 10% korting';
+          fb.style.color = 'var(--success)';
+        } else if (code === '') {
+          fb.textContent = '';
+        } else {
+          fb.textContent = '✗ Ongeldige kortingscode';
+          fb.style.color = 'var(--error)';
+        }
+      }
+    </script>
   </body>
 </html>

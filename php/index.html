@@ -1,115 +1,226 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Nora's Flora — handgemaakte boeketten van lokale kwekers. Vers, duurzaam, voor elk moment." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <title>Nora's Flora</title>
-    <script src="producten.js"></script>
-    <script src="script.js"></script>
+    <title>Nora's Flora — Verse bloemen met liefde</title>
   </head>
 
   <body>
+
+    <!-- ── HEADER ── -->
     <header>
-      <div id="divLogo">
-        <img
-          id="imgLogo"
-          src="images/Nora'sFloraLogo.png"
-          alt="Nora'sFloraLogo"
-        />
-      </div>
-      <div id="divNavigatie">
-        <a href="index.html">Home</a>
+      <a href="index.html" id="divLogo" aria-label="Nora's Flora – naar de homepage"></a>
+      <nav id="divNavigatie" aria-label="Hoofdnavigatie">
+        <a href="index.html" aria-current="page">Home</a>
         <a href="assortiment.php">Assortiment</a>
         <a href="contact.html">Contact</a>
-        <a href="shoppingcart.html">Winkelmandje</a>
-        <span id="cartCount"></span>
-      </div>
+        <a href="shoppingcart.html" class="nav-cart">Winkelmandje</a>
+        <span id="cartCount" aria-live="polite" aria-label="Aantal producten in winkelmandje"></span>
+      </nav>
     </header>
+
     <main>
-      <p id="pImgFlowers">Welkom bij Nora's Flora</p>
-      <p id="zonnetje">Bloemtjes die in het zonnetje gezet worden</p>
-      <div id="aanbiedingen-container">
-        <div class="aanbiedingen">
-          <div><img src="./images/pexels-pixabay-54267.webp" /></div>
 
-          <p>Zonnebloemen</p>
-          <p>€2,- per bos deze maandag</p>
-        </div>
-        <div class="aanbiedingen">
-          <div><img src="./images/pexels-valeriya-1961778.webp" /></div>
-
-          <p>Rode tulpen</p>
-          <p>€3,- per bos deze dinsdag</p>
-        </div>
-        <div class="aanbiedingen">
-          <div><img src="./images/pexels-scottwebb-403571.webp" /></div>
-
-          <p>Cactus in pot</p>
-          <p>deze week, 3 voor €5,-</p>
-        </div>
-        <div class="aanbiedingen">
-          <div><img src="./images/pexels-nextvoyage-457937.webp" /></div>
-
-          <p>Speciaal deze maand</p>
-          <p>Import gras uit Toronto Canada</p>
-        </div>
-        <div class="aanbiedingen">
-          <div><img src="./images/pexels-mikebirdy-109828.webp" /></div>
-
-          <p>Paarse Allium Bloemen</p>
-          <p>Gratis als een extra bij een bouqeut</p>
-        </div>
-        <div class="aanbiedingen">
-          <div>
-            <img src="./images/pexels-maureen-piecesphotography-1207978.webp" />
+      <!-- ── HERO ── -->
+      <section id="pImgFlowers" aria-label="Welkomssectie">
+        <div class="hero-content">
+          <div class="hero-text">
+            <span class="hero-eyebrow">Vers · Lokaal · Met liefde gemaakt</span>
+            <h1>Bloemen die<br /><em>je dag maken</em></h1>
+            <p>Handgemaakte boeketten samengesteld door Nora. Vers van lokale en duurzame kwekers — voor elk moment, elke gelegenheid.</p>
+            <div class="hero-trust">
+              <div class="hero-trust-item"><span>🌱</span> Duurzaam geteeld</div>
+              <div class="hero-trust-item"><span>🚚</span> Bezorging €4,95</div>
+              <div class="hero-trust-item"><span>✂️</span> Dagvers gesneden</div>
+            </div>
+            <div class="hero-buttons">
+              <a href="assortiment.php" class="btn-primary">Bekijk assortiment →</a>
+              <a href="contact.html" class="btn-ghost">Contact opnemen</a>
+            </div>
           </div>
+          <div class="hero-image">
+            <img src="./images/pexels-olly-3775156.webp" alt="Kleurrijk boeket van Nora's Flora" loading="eager" />
+            <span class="hero-badge">
+              <span class="hero-badge-dot"></span>
+              Vers elke dag
+            </span>
+          </div>
+        </div>
+      </section>
 
-          <p>Vetbloemen deze week</p>
-          <p>3 + 1 gratis</p>
+      <!-- ── TRUST BAR ── -->
+      <div class="trust-bar" role="list" aria-label="Onze beloftes">
+        <div class="trust-item" role="listitem">
+          <span class="trust-icon">🌷</span>
+          <div>
+            <span class="trust-label">Dagverse bloemen</span>
+            <span class="trust-sub">Elke ochtend nieuw binnengekomen</span>
+          </div>
+        </div>
+        <div class="trust-item" role="listitem">
+          <span class="trust-icon">🌿</span>
+          <div>
+            <span class="trust-label">Duurzame kwekers</span>
+            <span class="trust-sub">Lokaal en milieubewust</span>
+          </div>
+        </div>
+        <div class="trust-item" role="listitem">
+          <span class="trust-icon">🎁</span>
+          <div>
+            <span class="trust-label">Gratis cadeaukaart</span>
+            <span class="trust-sub">Bij elk boeket inbegrepen</span>
+          </div>
+        </div>
+        <div class="trust-item" role="listitem">
+          <span class="trust-icon">💬</span>
+          <div>
+            <span class="trust-label">Persoonlijk advies</span>
+            <span class="trust-sub">Nora helpt je altijd verder</span>
+          </div>
         </div>
       </div>
-    </main>
-    <div id="introductionContainer">
-      <div>
-        <h1 class="introductionTitel">Welkom bij nora's flora</h1>
-        <p>
-          bij Nora's Flora draait alles om de liefde voor bloemen en het creëren
-          van iets moois voor ieder moment.
-        </p>
-        <p>
-          lk ben Nora, de trotse eigenaresse, en ik stel met veel zorg en passie
-          elk boeket samen met oog voor kleur, vorm en seizoen.
-        </p>
-        <p>
-          Of je nu iemand wilt verrassen, een bruiloft plant of gewoon je dag
-          wilt opfleuren, bij Nora's Flora vind je altijd iets bijzonders. Elk
-          boeket wordt met de hand gemaakt en afgestemd op jouw wensen, met
-          bloemen van lokale en duurzame kwekers.
-        </p>
-        <p>Met bloemen van Nora's Flora wordt elke dag een beetje vrolijker!</p>
+
+      <!-- ── AANBIEDINGEN ── -->
+      <div class="section-header">
+        <span class="section-eyebrow">Deze week</span>
+        <h2 class="section-title">In het zonnetje gezet</h2>
+        <p class="section-sub">Speciale aanbiedingen, seizoensbloemen en weekdeals — elke week vernieuwd.</p>
       </div>
 
-      <div>
-        <img id="introductionImg" src="./images/pexels-olly-3775156.webp" />
+      <div id="aanbiedingen-container">
+        <article class="aanbiedingen">
+          <div class="aanbiedingen-img-wrap">
+            <img src="./images/pexels-pixabay-54267.webp" alt="Zonnebloemen" loading="lazy" />
+            <span class="aanbiedingen-tag">Deze maandag</span>
+          </div>
+          <div class="aanbiedingen-body">
+            <p class="aanbiedingen-name">Zonnebloemen</p>
+            <p class="aanbiedingen-offer">€2,— per bos</p>
+          </div>
+        </article>
+
+        <article class="aanbiedingen">
+          <div class="aanbiedingen-img-wrap">
+            <img src="./images/pexels-valeriya-1961778.webp" alt="Rode tulpen" loading="lazy" />
+            <span class="aanbiedingen-tag">Deze dinsdag</span>
+          </div>
+          <div class="aanbiedingen-body">
+            <p class="aanbiedingen-name">Rode tulpen</p>
+            <p class="aanbiedingen-offer">€3,— per bos</p>
+          </div>
+        </article>
+
+        <article class="aanbiedingen">
+          <div class="aanbiedingen-img-wrap">
+            <img src="./images/pexels-scottwebb-403571.webp" alt="Cactus in pot" loading="lazy" />
+            <span class="aanbiedingen-tag">Deze week</span>
+          </div>
+          <div class="aanbiedingen-body">
+            <p class="aanbiedingen-name">Cactus in pot</p>
+            <p class="aanbiedingen-offer">3 voor €5,—</p>
+          </div>
+        </article>
+
+        <article class="aanbiedingen">
+          <div class="aanbiedingen-img-wrap">
+            <img src="./images/pexels-nextvoyage-457937.webp" alt="Speciaal importgras" loading="lazy" />
+            <span class="aanbiedingen-tag">Deze maand</span>
+          </div>
+          <div class="aanbiedingen-body">
+            <p class="aanbiedingen-name">Import sierpgras</p>
+            <p class="aanbiedingen-offer">Speciaal seizoensaanbod</p>
+          </div>
+        </article>
+
+        <article class="aanbiedingen">
+          <div class="aanbiedingen-img-wrap">
+            <img src="./images/pexels-mikebirdy-109828.webp" alt="Paarse Allium" loading="lazy" />
+            <span class="aanbiedingen-tag">Bij een boeket</span>
+          </div>
+          <div class="aanbiedingen-body">
+            <p class="aanbiedingen-name">Paarse Allium</p>
+            <p class="aanbiedingen-offer">Gratis als extra</p>
+          </div>
+        </article>
+
+        <article class="aanbiedingen">
+          <div class="aanbiedingen-img-wrap">
+            <img src="./images/pexels-maureen-piecesphotography-1207978.webp" alt="Vetplanten" loading="lazy" />
+            <span class="aanbiedingen-tag">3+1 gratis</span>
+          </div>
+          <div class="aanbiedingen-body">
+            <p class="aanbiedingen-name">Vetplanten</p>
+            <p class="aanbiedingen-offer">Drie + één gratis</p>
+          </div>
+        </article>
       </div>
-    </div>
-    <footer id="footerContainer">
-      <div id="footerLinks">
-        <p>
-          Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: contact@noraflora.com
-        </p>
-        <p>Telefoon&nbsp;&nbsp;: 06 12345678</p>
-        <p>
-          Adres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Zwolle, pannenkoekendijk
-          420 B
-        </p>
+
+    </main>
+
+    <!-- ── INTRODUCTIE ── -->
+    <section id="introductionContainer" aria-label="Over Nora's Flora">
+      <div class="intro-text">
+        <h2 class="introductionTitel">Welkom bij<br />Nora's Flora</h2>
+        <p>Bij Nora's Flora draait alles om de liefde voor bloemen en het creëren van iets moois voor ieder moment.</p>
+        <p>Ik ben Nora, de trotse eigenaresse, en ik stel met veel zorg en passie elk boeket samen met oog voor kleur, vorm en seizoen.</p>
+        <p>Of je nu iemand wilt verrassen, een bruiloft plant of gewoon je dag wilt opfleuren — bij Nora's Flora vind je altijd iets bijzonders. Elk boeket wordt met de hand gemaakt en afgestemd op jouw wensen.</p>
+        <a href="contact.html" class="intro-cta">Neem contact op →</a>
       </div>
-      <div id="footerRechts">
-        <h2>Openingstijden</h2>
-        <p>Ma - Vr : 12:00 - 17:00</p>
-        <p>Zaterdag : 10:00 - 17:00</p>
+      <div class="intro-image">
+        <img id="introductionImg" src="./images/pexels-olly-3775156.webp" alt="Nora samen met haar boeketten" loading="lazy" />
+        <div class="intro-stat">
+          <span class="intro-stat-num">500+</span>
+          <span class="intro-stat-label">Blije klanten</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div id="footerContainer">
+        <div class="footer-brand">
+          <p>Verse bloemen met liefde samengesteld in Zwolle. Elke dag opnieuw.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Pinterest">📌</a>
+          </div>
+        </div>
+        <div id="footerLinks">
+          <span class="footer-col-title">Contact</span>
+          <div class="footer-contact-grid">
+            <span class="footer-label">Email</span>
+            <span class="footer-value">contact@noraflora.com</span>
+            <span class="footer-label">Tel</span>
+            <span class="footer-value">06 12345678</span>
+            <span class="footer-label">Adres</span>
+            <span class="footer-value">Pannenkoekendijk 420 B, Zwolle</span>
+          </div>
+        </div>
+        <div id="footerRechts">
+          <span class="footer-col-title">Openingstijden</span>
+          <p>Maandag – Vrijdag &nbsp;: 12:00 – 17:00</p>
+          <p>Zaterdag &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 10:00 – 17:00</p>
+          <p>Zondag &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Gesloten</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Nora's Flora — Alle rechten voorbehouden</span>
+        <nav class="footer-legal-links" aria-label="Juridische links">
+          <a href="#">Privacybeleid</a>
+          <a href="#">Algemene voorwaarden</a>
+          <a href="#">Retourbeleid</a>
+        </nav>
       </div>
     </footer>
+
+    <script src="producten.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

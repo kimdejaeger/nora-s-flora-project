@@ -1,96 +1,235 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Neem contact op met Nora's Flora. Vragen over bloemen, bestellingen of bezorging? We helpen je graag." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <title>Nora's Flora</title>
+    <title>Contact – Nora's Flora</title>
   </head>
 
   <body>
+
+    <!-- ── HEADER ── -->
     <header>
-      <div id="divLogo">
-        <img
-          id="imgLogo"
-          src="images/Nora'sFloraLogo.png"
-          alt="Nora'sFloraLogo"
-        />
-      </div>
-      <div id="divNavigatie">
+      <a href="index.html" id="divLogo" aria-label="Nora's Flora – naar de homepage"></a>
+      <nav id="divNavigatie" aria-label="Hoofdnavigatie">
         <a href="index.html">Home</a>
         <a href="assortiment.php">Assortiment</a>
-        <a href="contact.html">Contact</a>
-        <a href="shoppingcart.html">Winkelmandje</a>
-      </div>
+        <a href="contact.html" aria-current="page">Contact</a>
+        <a href="shoppingcart.html" class="nav-cart">Winkelmandje</a>
+        <span id="cartCount" aria-live="polite"></span>
+      </nav>
     </header>
+
     <main>
-      <div id="contact">
-        <div class="contactBox">
-          <p id="contactOpnemen">Neem contact op</p>
-          <section>
-            <div id="contactFormulier">
-              <div>
-                <p>
-                  Heb je een vraag over onze bloemen, een bestelling of wil je
-                  gewoon even hallo zeggen? We horen graag van je! Vul het
-                  contactformulier in of stuur ons een berichtje via e-mail of
-                  telefoon. Nora's Flora staat klaar om je te helpen met al je
-                  bloemige wensen.🌸
-                </p>
-              </div>
-              <div>
-                <textarea
-                  rows="12"
-                  cols="40"
-                  name="vragenEnOpmerkingen"
-                  id="vragenEnOpmerkingen"
-                  placeholder="typ hier je vraag of opmerking..."
-                ></textarea>
-              </div>
-            </div>
-          </section>
-          <section>
-            <div id="contactInformatie">
-              <div id="contactGegevens">
-                <div>
-                  <p>Email<br />Telefoon<br />Adres</p>
-                </div>
-                <div>
-                  <p>
-                    : contact@noraflora.com<br />: 06 12345678<br />: Zwolle,
-                    pannenkoekendijk 420 B
-                  </p>
-                </div>
-              </div>
-              <div>
-                <input
-                  id="email"
-                  type="text"
-                  placeholder="typ hier je email..."
-                />
-                <div><button id="contactButton">Verzenden</button></div>
-              </div>
-            </div>
-          </section>
+
+      <!-- ── PAGE HERO ── -->
+      <div class="contact-hero">
+        <div class="contact-hero-inner">
+          <h1>Contact opnemen</h1>
+          <p>We beantwoorden je bericht binnen één werkdag — vaak sneller.</p>
         </div>
       </div>
+
+      <!-- ── CONTACT GRID ── -->
+      <section id="contact" aria-label="Contactformulier en informatie">
+        <div class="contact-grid">
+
+          <!-- Left: info card -->
+          <div class="contact-info-card">
+            <h2>Hallo 🌸</h2>
+            <p>Heb je een vraag over onze bloemen, een bestelling, of wil je gewoon even hallo zeggen? We horen graag van je.</p>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📧</div>
+              <div>
+                <span class="contact-detail-label">E-mail</span>
+                <a href="mailto:contact@noraflora.com" class="contact-detail-value">contact@noraflora.com</a>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📞</div>
+              <div>
+                <span class="contact-detail-label">Telefoon</span>
+                <a href="tel:0612345678" class="contact-detail-value">06 12345678</a>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📍</div>
+              <div>
+                <span class="contact-detail-label">Adres</span>
+                <span class="contact-detail-value">Pannenkoekendijk 420 B<br />8041 XY Zwolle</span>
+              </div>
+            </div>
+
+            <div class="contact-hours">
+              <span class="contact-hours-title">Openingstijden</span>
+              <div class="contact-hours-row"><span>Maandag – Vrijdag</span><span>12:00 – 17:00</span></div>
+              <div class="contact-hours-row"><span>Zaterdag</span><span>10:00 – 17:00</span></div>
+              <div class="contact-hours-row"><span>Zondag</span><span>Gesloten</span></div>
+            </div>
+          </div>
+
+          <!-- Right: form card -->
+          <div class="contact-form-card">
+            <h2>Stuur een bericht</h2>
+
+            <div class="form-group">
+              <label class="form-label" for="contactNaam">Jouw naam</label>
+              <input
+                class="form-input"
+                type="text"
+                id="contactNaam"
+                name="naam"
+                placeholder="Bijv. Lisa de Vries"
+                autocomplete="name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">E-mailadres</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="jouw@email.nl"
+                autocomplete="email"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contactOnderwerp">Onderwerp</label>
+              <select class="form-input" id="contactOnderwerp" name="onderwerp" style="appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231e3a1e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;">
+                <option value="">Kies een onderwerp</option>
+                <option value="bestelling">Vraag over een bestelling</option>
+                <option value="assortiment">Vraag over het assortiment</option>
+                <option value="bezorging">Bezorging &amp; levering</option>
+                <option value="aangepast">Aangepast boeket</option>
+                <option value="anders">Iets anders</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="vragenEnOpmerkingen">Bericht</label>
+              <textarea
+                id="vragenEnOpmerkingen"
+                name="vragenEnOpmerkingen"
+                rows="5"
+                placeholder="Typ hier je vraag of opmerking..."
+              ></textarea>
+            </div>
+
+            <span id="contactFeedback" role="alert"></span>
+
+            <button id="contactButton" type="button">Bericht verzenden</button>
+
+            <p style="margin-top:16px;font-size:12px;color:var(--ink-faint);text-align:center;">
+              We reageren doorgaans binnen één werkdag. 🌷
+            </p>
+          </div>
+
+        </div>
+      </section>
+
     </main>
-    <footer id="footerContainer">
-      <div id="footerLinks">
-        <p>
-          Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: contact@noraflora.com
-        </p>
-        <p>Telefoon&nbsp;&nbsp;: 06 12345678</p>
-        <p>
-          Adres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Zwolle, pannenkoekendijk
-          420 B
-        </p>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div id="footerContainer">
+        <div class="footer-brand">
+          <p>Verse bloemen met liefde samengesteld in Zwolle. Elke dag opnieuw.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Pinterest">📌</a>
+          </div>
+        </div>
+        <div id="footerLinks">
+          <span class="footer-col-title">Contact</span>
+          <div class="footer-contact-grid">
+            <span class="footer-label">Email</span>
+            <span class="footer-value">contact@noraflora.com</span>
+            <span class="footer-label">Tel</span>
+            <span class="footer-value">06 12345678</span>
+            <span class="footer-label">Adres</span>
+            <span class="footer-value">Pannenkoekendijk 420 B, Zwolle</span>
+          </div>
+        </div>
+        <div id="footerRechts">
+          <span class="footer-col-title">Openingstijden</span>
+          <p>Maandag – Vrijdag &nbsp;: 12:00 – 17:00</p>
+          <p>Zaterdag &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 10:00 – 17:00</p>
+          <p>Zondag &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Gesloten</p>
+        </div>
       </div>
-      <div id="footerRechts">
-        <h2>Openingstijden</h2>
-        <p>Ma - Vr : 12:00 - 17:00</p>
-        <p>Zaterdag : 10:00 - 17:00</p>
+      <div class="footer-bottom">
+        <span>© 2025 Nora's Flora — Alle rechten voorbehouden</span>
+        <nav class="footer-legal-links" aria-label="Juridische links">
+          <a href="#">Privacybeleid</a>
+          <a href="#">Algemene voorwaarden</a>
+          <a href="#">Retourbeleid</a>
+        </nav>
       </div>
     </footer>
+
+    <script src="script.js"></script>
+    <script>
+      // Add name field to contact validation
+      const origContact = document.getElementById('contactButton');
+      if (origContact) {
+        origContact.addEventListener('click', function () {
+          const naam = document.getElementById('contactNaam');
+          const emailInput = document.getElementById('email');
+          const message = document.getElementById('vragenEnOpmerkingen');
+          const feedback = document.getElementById('contactFeedback');
+          if (!emailInput || !message || !feedback) return;
+
+          const naamVal = naam ? naam.value.trim() : 'x';
+          const email = emailInput.value.trim();
+          const msg = message.value.trim();
+
+          if (naam && !naamVal) {
+            feedback.textContent = '⚠ Vul je naam in.';
+            feedback.className = 'error';
+            naam.focus();
+            return;
+          }
+
+          if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            feedback.textContent = '⚠ Voer een geldig e-mailadres in.';
+            feedback.className = 'error';
+            emailInput.focus();
+            return;
+          }
+
+          if (!msg) {
+            feedback.textContent = '⚠ Vul je bericht in.';
+            feedback.className = 'error';
+            message.focus();
+            return;
+          }
+
+          origContact.disabled = true;
+          origContact.textContent = 'Verzenden...';
+
+          setTimeout(() => {
+            feedback.textContent = '✓ Je bericht is verzonden! We nemen snel contact op.';
+            feedback.className = 'success';
+            if (naam) naam.value = '';
+            emailInput.value = '';
+            message.value = '';
+            document.getElementById('contactOnderwerp').value = '';
+            origContact.disabled = false;
+            origContact.textContent = 'Bericht verzenden';
+          }, 900);
+        });
+      }
+    </script>
   </body>
 </html>

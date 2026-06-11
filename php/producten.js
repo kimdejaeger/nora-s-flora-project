@@ -1,24 +1,20 @@
+// ============================================================
+//  Nora's Flora — producten.js
+//  Loads products from the PHP API endpoint
+// ============================================================
+
 let planten = [];
 
-// Laad producten van de database via API
 async function loadPlanten() {
   try {
     const response = await fetch('api/get-products.php');
-    if (!response.ok) {
-      throw new Error('Fout bij laden van producten');
-    }
+    if (!response.ok) throw new Error('Fout bij laden van producten');
     planten = await response.json();
-    console.log('Producten geladen van database:', planten);
-    
-    // Als de pagina al geladen is, toon de producten
-    const productGrid = document.getElementById("producten");
-    if (productGrid && typeof toonPlanten === 'function') {
-      toonPlanten();
-    }
+    console.log('Producten geladen:', planten);
   } catch (error) {
     console.error('Fout bij laden producten:', error);
   }
 }
 
-// Laad producten wanneer dit script geladen wordt
+// Load on script init
 loadPlanten();

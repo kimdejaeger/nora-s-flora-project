@@ -1,0 +1,1 @@
+mariadb --local-infile=1 -u root -p noras_flora < planten-import.sql

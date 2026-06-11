@@ -1,0 +1,44 @@
+# ---------------------------
+# create table script maken
+# ---------------------------
+
+Maak het create table script voor MariaDB aan gebasseerd op onderstaande csv file.
+
+De eerste regel bevat de kolomnamen vanaf regel 2 en verder bevat voorbeeld data
+
+
+
+naam	latijnse_naam	Waterbehoefte	Lichtbehoefte	Groeihoogte_cm	verkoopprijs_eur	standplaats	voorraad	bloeitijd	kleur	huisdier_vriendelijk	overview_image	additional_image1	additional_image2
+Gatenplant Variegata Select	placeholder	Laag	Veel licht	126	138.0	Kamerplanten	41	Lente	Wit	Ja	dahlia_virtuoso_dayglo_yellow_mono.jpg	island_paradise-872x1200-ac7b053.jpg	
+Gatenplant Variegata Beauty	placeholder	Hoog	Halfschaduw	29	142.45	Kamerplanten	27	Zomer	Wit	Nee	salvia_unplugged_white_grande.jpg	chic_boutique_0.jpg	
+Gatenplant Variegata Princess	placeholder	Hoog	Schaduw	131	94.29	Kamerplanten	112	Lente	Blauw	Nee	heliotropium_aromagica_purple_tag_0.jpg	dahlia_virtuoso_classy_carmine_mono.jpg	
+Gatenplant Variegata King	placeholder	Hoog	Halfschaduw	207	20.44	Tussenvariant	180	Herfst	Blauw	Ja	portulaca_mojave_mango_mono.jpg	scaevola_stardiva_blue_co-ex_grande.jpg	
+
+
+
+
+graag zonder ENUM
+
+
+
+
+# ---------------------------
+# csv bestand importeren
+# ---------------------------
+
+Hoe importeer ik een csv bestand met de inhoud van 1 tabel in MariaDB via de command line
+
+graag met een command line utility
+
+
+
+mariadb mysql \
+  --local-infile=1 \
+  -u root \
+  -p noras_flora < planten-import.sql
+
+
+
+  the following command is not working
+
+  mariadb mysql --local-infile=1 -u root -p noras_flora < planten-import.sql
